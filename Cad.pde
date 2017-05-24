@@ -27,7 +27,7 @@ void mouseClicked()
 {
   switch(estado)
   {
-    case(0):
+    case 0:
     
   }
 }
