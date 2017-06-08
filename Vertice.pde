@@ -1,4 +1,4 @@
-class Vertice 
+class Vertice
 {
   double x;
   double y;

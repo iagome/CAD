@@ -12,6 +12,6 @@ class Matriz
                 double d, double e, double f,
                 double g, double h, double i)
   {
-    m = new double[][]{{a,b,c},{d,e,f},{g,h,i}};
+    m = new double[][]{{a, b, c},{d, e, f},{g, h, i}};
   }
 }
