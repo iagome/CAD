@@ -39,26 +39,26 @@ void draw()
 
   switch(estado)
   {
-  case idle:
-    break;
-
-  case desenhaReta:
-    temp2 = new Vertice(map.realX(mouseX), map.realY(mouseY));
-
-    if (!vertices.isEmpty()) obj.reta(vertices.get(0), temp2);
-
-    break;
-
-  case desenhaQuad:
-    /*if (mousePressed)
-     {
-     temp = new Vertice(map.realX(pmouseX), map.realY(pmouseY));
-     }
-     break;*/
-
-  case desenhaCirculo:
-
-    break;
+    case idle:
+      break;
+  
+    case desenhaReta:
+      temp2 = new Vertice(mouseX, mouseY);
+  
+      if (!vertices.isEmpty()) obj.reta(vertices.get(0), temp2);
+  
+      break;
+  
+    case desenhaQuad:
+      /*if (mousePressed)
+       {
+       temp = new Vertice(map.realX(pmouseX), map.realY(pmouseY));
+       }
+       break;*/
+  
+    case desenhaCirculo:
+  
+      break;
   }
 
   textAlign(RIGHT, TOP);
@@ -106,7 +106,7 @@ void mousePressed()
   switch (estado)
   {
     case desenhaReta:
-      temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
+      temp = new Vertice(mouseX, mouseY);
       vertices.add(temp);
       temp = null;
       flagReta = true;
@@ -114,7 +114,7 @@ void mousePressed()
       break;
   
     case desenhaCirculo:
-      temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
+      temp = new Vertice(mouseX, mouseY);
       vertices.add(temp);
       temp = null;
   
@@ -129,7 +129,7 @@ void mouseReleased()
     case desenhaReta:
       flg = true;
       objTemp = new Objeto();
-      temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
+      temp = new Vertice(mouseX, mouseY);
       vertices.add(temp);
       temp = null;
       //obj.reta(vertices.get(0), vertices.get(1));
@@ -141,7 +141,12 @@ void mouseReleased()
  //<>//
     case desenhaCirculo:
       flg = true;
-      objTemp = new Objeto(mouseX - map.pixelX(vertices.get(0).x), vertices.get(0));
+      if (mouseX - vertices.get(0).x == 0) 
+      {
+        vertices = new ArrayList<Vertice>();
+        break;
+      }
+      objTemp = new Objeto(mouseX - vertices.get(0).x, vertices.get(0));
       //obj.bresenCircle(map.pixelX(vertices.get(0).x), map.pixelY(vertices.get(0).y), abs(mouseX - map.pixelX(vertices.get(0).x)), 255);
       objTemp.vertices = vertices;
       objetos.add(objTemp);

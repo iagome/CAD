@@ -2,7 +2,7 @@ class Objeto
 {
   Matriz m;
   Vertice pivot;
-  double raio;
+  double raio = 0;
   ArrayList<Vertice> vertices = new ArrayList<Vertice>();
   color c;
   boolean completo = false; // Para usar na interface grafica.
@@ -33,7 +33,7 @@ class Objeto
 
   public void reta(Vertice v1, Vertice v2)
   {
-    bresenLine(map.pixelX(v1.x), map.pixelY(v1.y), map.pixelX(v2.x), map.pixelY(v2.y), color(255));
+    bresenLine(v1.x, v1.y, v2.x, v2.y, color(255));
   }
 
   void bresenCircle(int xC, int yC, int r, color c)
@@ -70,11 +70,9 @@ class Objeto
   {
     for (int i = 0; i < objetos.size(); i++)
     {
-      //if (objetos.size() == 0) break;
-
       if (objetos.get(i).raio != 0)
       {
-        bresenCircle(map.pixelX(objetos.get(i).vertices.get(0).x), map.pixelX(objetos.get(i).vertices.get(0).y), (int)objetos.get(i).raio, color(255));
+        bresenCircle(objetos.get(i).vertices.get(0).x, objetos.get(i).vertices.get(0).y, (int)objetos.get(i).raio, color(255));
       } 
       else
       {

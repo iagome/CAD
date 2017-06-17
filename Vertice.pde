@@ -1,7 +1,7 @@
 class Vertice
 {
-  double x;
-  double y;
+  int x;
+  int y;
   
   public Vertice()
   {
@@ -9,7 +9,7 @@ class Vertice
     y = 0;
   }
   
-  public Vertice(double x, double y) 
+  public Vertice(int x, int y) 
   {
     this.x = x;
     this.y = y;
