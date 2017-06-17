@@ -31,29 +31,10 @@ void draw()
 {
   image(teste, 0, 0);
   background(53);
+  
   if (flg == true)
   {
-    for (int i = 0; i < objetos.size(); i++)
-    {
-      if (objetos.size() == 0) break;
-
-     /* if (objetos.get(i).raio != 0)
-      {
-        obj.bresenCircle(map.pixelX(objetos.get(i).vertices.get(0).x), map.pixelX(objetos.get(i).vertices.get(0).y), mouseX - map.pixelX(objetos.get(i).vertices.get(0).x), color(255));
-      }*/
-
-      for (int j = 1; j < objetos.get(i).vertices.size(); j++)
-      {
-        if (objetos.get(i).raio != 0)
-        {
-          obj.bresenCircle(map.pixelX(objetos.get(i).vertices.get(j).x), map.pixelX(objetos.get(i).vertices.get(j).y), abs(mouseX - map.pixelX(objetos.get(i).vertices.get(j).x)), color(255)); //<>//
-        }
-        if ((j) == objetos.get(i).vertices.size())
-          obj.reta(objetos.get(i).vertices.get(j), objetos.get(i).vertices.get(0));
-        else
-          obj.reta(objetos.get(i).vertices.get(j - 1), objetos.get(i).vertices.get(j));
-      }
-    }
+    obj.printObject(); //<>//
   }
 
   switch(estado)
@@ -124,20 +105,20 @@ void mousePressed()
 {
   switch (estado)
   {
-  case desenhaReta:
-    temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
-    vertices.add(temp);
-    temp = null;
-    flagReta = true;
-
-    break;
-
-  case desenhaCirculo:
-    temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
-    vertices.add(temp);
-    temp = null;
-
-    break;
+    case desenhaReta:
+      temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
+      vertices.add(temp);
+      temp = null;
+      flagReta = true;
+  
+      break;
+  
+    case desenhaCirculo:
+      temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
+      vertices.add(temp);
+      temp = null;
+  
+      break;
   }
 }
 
@@ -145,26 +126,26 @@ void mouseReleased()
 {
   switch (estado)
   {
-  case desenhaReta:
-    flg = true;
-    objTemp = new Objeto();
-    temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
-    vertices.add(temp);
-    temp = null;
-    obj.reta(vertices.get(0), vertices.get(1));
-    objTemp.vertices = vertices;
-    objetos.add(objTemp);
-    objTemp = null;
-    vertices = new ArrayList<Vertice>();
-    break;
+    case desenhaReta:
+      flg = true;
+      objTemp = new Objeto();
+      temp = new Vertice(map.realX(mouseX), map.realY(mouseY));
+      vertices.add(temp);
+      temp = null;
+      //obj.reta(vertices.get(0), vertices.get(1));
+      objTemp.vertices = vertices;
+      objetos.add(objTemp);
+      objTemp = null;
+      vertices = new ArrayList<Vertice>();
+      break;
  //<>//
-  case desenhaCirculo:
-    flg = true;
-    objTemp = new Objeto(mouseX - map.pixelX(vertices.get(0).x), vertices.get(0));
-    obj.bresenCircle(map.pixelX(vertices.get(0).x), map.pixelY(vertices.get(0).y), mouseX - map.pixelX(vertices.get(0).x), 255);
-    objTemp.vertices = vertices;
-    objetos.add(objTemp);
-    objTemp = null;
-    vertices = new ArrayList<Vertice>();
+    case desenhaCirculo:
+      flg = true;
+      objTemp = new Objeto(mouseX - map.pixelX(vertices.get(0).x), vertices.get(0));
+      //obj.bresenCircle(map.pixelX(vertices.get(0).x), map.pixelY(vertices.get(0).y), abs(mouseX - map.pixelX(vertices.get(0).x)), 255);
+      objTemp.vertices = vertices;
+      objetos.add(objTemp);
+      objTemp = null;
+      vertices = new ArrayList<Vertice>();
   }
 }
