@@ -65,6 +65,11 @@ class Objeto
       set(xC - x, yC + y, c);
     }
   }
+  
+  void removeObject()
+  {
+    objetos.remove(rs);
+  }
 
   void printObject()
   {

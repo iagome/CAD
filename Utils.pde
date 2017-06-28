@@ -22,22 +22,27 @@ int buscarObjeto(double Px, double Py)
   {
     int contador = 0;
     valorObjeto = 0;
-    for(int j = 0; j< objetos.get(i).vertices.size(); j++)
+    
+    for (int j = 0; j< objetos.get(i).vertices.size(); j++)
     {
       double algo;
       double algo2;
       double algo3;
       double disP1, disP2;
-     if(objetos.get(i).raio == 0)
+      
+     if (objetos.get(i).raio == 0)
      {
-       if(objetos.get(i).vertices.size() == 2)
+       flagReta = false;
+       flgPoligono = false;
+       
+       if (objetos.get(i).vertices.size() == 2)
        {
          Matriz algoM = new Matriz(Px, Py, 1, objetos.get(i).vertices.get(0).x, objetos.get(i).vertices.get(0).y, 1, objetos.get(i).vertices.get(1).x, objetos.get(i).vertices.get(1).y, 1);
          algo3 = algoM.determinante(algoM.m);
          //disP1 = Math.sqrt(Math.pow((Px - objetos.get(i).vertices.get(0).x), 2) + Math.pow((Py - objetos.get(i).vertices.get(0).y), 2));
          //disP2 = Math.sqrt(Math.pow((Px - objetos.get(i).vertices.get(1).x), 2) + Math.pow((Py - objetos.get(i).vertices.get(1).y), 2));
          
-         if (abs((float)algo3) < 500 && abs((float)algo3) >= 0)
+         if (abs((float)algo3) < 500 && abs((float)algo3) > 0)
          {
            flagReta = true;
            return i;

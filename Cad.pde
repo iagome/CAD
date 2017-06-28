@@ -13,6 +13,7 @@ final int translada = 12;
 final int rotaciona = 13;
 final int deleta = 14;
 int estado = idle;
+String texto = "idle";
 int rs = -1;
 int rsC = -1;
 int rsL = -1;
@@ -95,24 +96,7 @@ void draw()
   textAlign(RIGHT, TOP);
   text(mouseX + "," + mouseY, 600, 50); 
   image(menuImg, 0, 0);
-  /* if (flg == true)
-   {
-   for (int i = 0; i < objetos.size(); i++)
-   {
-   
-   
-   
-   for (int j = 1; j < objetos.get(i).vertices.size(); j++)
-   {
-   if ((j) == objetos.get(i).vertices.size())
-   obj.reta(objetos.get(i).vertices.get(j), objetos.get(i).vertices.get(0));
-   else
-   obj.reta(objetos.get(i).vertices.get(j - 1), objetos.get(i).vertices.get(j));
-   }
-   }
-   }*/
-
-  image(menuImg, 0, 0);
+  text(texto, 1100, 660);
 }
 
 void mouseClicked()
@@ -120,50 +104,91 @@ void mouseClicked()
   if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 11 && mouseY <= 47))
   {
     estado = selecionar;
+    texto = "Selecionar";
   } 
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 65 && mouseY <= 88))
   {
     estado = desenhaReta;
+    texto = "Reta";
   } 
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 108 && mouseY <= 131))
   {
     estado = desenhaQuad;
+    texto = "Quadrado";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 153 && mouseY <= 175))
   {
     estado = desenhaPolR;
+    texto = "Polígono Regular";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 195 && mouseY <= 218))
   {
     estado = desenhaPolIr;
+    texto = "Polígono Irregular";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 238 && mouseY <= 264))
   {
     estado = pintar;
+    texto = "Pintar";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 285 && mouseY <= 309))
   {
     estado = desenhaCirculo;
+    texto = "Círculo";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 381 && mouseY <= 405))
   {
     estado = rotaciona;
+    texto = "Rotacionar Objeto";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 424 && mouseY <= 446))
   {
     estado = escala;
+    texto = "Mudar Escala";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 464 && mouseY <= 484))
   {
     estado = translada;
+    texto = "Mover Objeto";
   }
   else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 675 && mouseY <= 720))
   {
-    estado = deleta;
+    if (estado == selecionar && rs != -1) obj.removeObject();
   }
   
   if (estado == selecionar && !(mouseX <= 45)) rs = buscarObjeto(mouseX, mouseY);
   else rs = -1;
+  
+  if (mouseX > 45)
+  {
+    switch (estado)
+    {
+      case desenhaReta:
+        if (vertices.size() == 0)
+        {
+          temp = new Vertice(mouseX, mouseY);
+          vertices.add(temp);
+          temp = null;
+        }
+        else
+        {
+          flg = true;
+          objTemp = new Objeto();
+          temp = new Vertice(mouseX, mouseY);
+          vertices.add(temp);
+          temp = null;
+          //obj.reta(vertices.get(0), vertices.get(1));
+          objTemp.vertices = vertices;
+          objetos.add(objTemp);
+          objTemp = null;
+          temp2 = null;
+          vertices = new ArrayList<Vertice>();
+          break;
+        }
+    
+        break;
+    }
+  }
 }
 
 void mouseMoved()
@@ -218,12 +243,12 @@ void mousePressed()
 {
   switch (estado)
   {
-    case desenhaReta:
-      temp = new Vertice(mouseX, mouseY);
-      vertices.add(temp);
-      temp = null;
+    //case desenhaReta:
+    //  temp = new Vertice(mouseX, mouseY);
+    //  vertices.add(temp);
+    //  temp = null;
   
-      break;
+    //  break;
   
     case desenhaCirculo:
       temp = new Vertice(mouseX, mouseY);
@@ -245,19 +270,19 @@ void mouseReleased()
 {
   switch (estado)
   {
-    case desenhaReta:
-      flg = true;
-      objTemp = new Objeto();
-      temp = new Vertice(mouseX, mouseY);
-      vertices.add(temp);
-      temp = null;
-      //obj.reta(vertices.get(0), vertices.get(1));
-      objTemp.vertices = vertices;
-      objetos.add(objTemp);
-      objTemp = null;
-      temp2 = null;
-      vertices = new ArrayList<Vertice>();
-      break;
+    //case desenhaReta:
+    //  flg = true;
+    //  objTemp = new Objeto();
+    //  temp = new Vertice(mouseX, mouseY);
+    //  vertices.add(temp);
+    //  temp = null;
+    //  //obj.reta(vertices.get(0), vertices.get(1));
+    //  objTemp.vertices = vertices;
+    //  objetos.add(objTemp);
+    //  objTemp = null;
+    //  temp2 = null;
+    //  vertices = new ArrayList<Vertice>();
+    //  break;
 
     case desenhaCirculo:
       flg = true;
