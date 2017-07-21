@@ -102,6 +102,7 @@ void draw()
   textAlign(RIGHT, TOP);
   text(mouseX + "," + mouseY, 600, 50); 
   image(menuImg, 0, 0);
+  
   if (flagHover)
   {
     imgHover = hover;
@@ -120,7 +121,7 @@ void draw()
 
 void mouseClicked()
 {
-  if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 11 && mouseY <= 47))
+  if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 0 && mouseY <= 55))
   {
     estado = selecionar;
     texto = "Selecionar";
@@ -128,7 +129,7 @@ void mouseClicked()
     coordyImgclick = 0;
     flagImg = true;
   } 
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 65 && mouseY <= 88))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 58 && mouseY <= 95))
   {
     estado = desenhaReta;
     texto = "Reta";
@@ -136,7 +137,7 @@ void mouseClicked()
     coordyImgclick = 58;
     flagImg = true;
   } 
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 108 && mouseY <= 131))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 100 && mouseY <= 141))
   {
     estado = desenhaQuad;
     texto = "Quadrado";
@@ -144,7 +145,7 @@ void mouseClicked()
     coordyImgclick = 100;
     flagImg = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 153 && mouseY <= 175))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 144 && mouseY <= 185))
   {
     estado = desenhaPolR;
     texto = "Polígono Regular";
@@ -152,7 +153,7 @@ void mouseClicked()
     coordyImgclick = 144;
     flagImg = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 195 && mouseY <= 218))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 187 && mouseY <= 230))
   {
     estado = desenhaPolIr;
     texto = "Polígono Irregular";
@@ -160,7 +161,7 @@ void mouseClicked()
     coordyImgclick = 187;
     flagImg = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 238 && mouseY <= 264))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 232 && mouseY <= 272))
   {
     estado = pintar;
     texto = "Pintar";
@@ -168,7 +169,7 @@ void mouseClicked()
     coordyImgclick = 232;
     flagImg = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 285 && mouseY <= 309))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 278 && mouseY <= 322))
   {
     estado = desenhaCirculo;
     texto = "Círculo";
@@ -176,7 +177,7 @@ void mouseClicked()
     coordyImgclick = 278;
     flagImg = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 381 && mouseY <= 405))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 373 && mouseY <= 413))
   {
     clicado = rotaciona;
     coordyImgclick = 373;
@@ -184,7 +185,7 @@ void mouseClicked()
     texto = "Rotacionar Objeto";
     if (estado == selecionar && rs != -1) obj.rotacao();
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 424 && mouseY <= 446))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 417 && mouseY <= 455))
   {
     clicado = escala;
     coordyImgclick = 417;
@@ -192,7 +193,7 @@ void mouseClicked()
     texto = "Mudar Escala";
     if (estado == selecionar && rs != -1) obj.escala();
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 464 && mouseY <= 484))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 456 && mouseY <= 495))
   {
     clicado = translada;
     coordyImgclick = 455;
@@ -200,7 +201,7 @@ void mouseClicked()
     texto = "Mover Objeto";
     if (estado == selecionar && rs != -1) obj.translacao();
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 675 && mouseY <= 720))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 672 && mouseY <= 720))
   {
     clicado = deleta;
     coordyImgclick = 671;
@@ -276,67 +277,67 @@ void mouseClicked()
 
 void mouseMoved()
 {
-  if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 11 && mouseY <= 47))
+  if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 0 && mouseY <= 55))
   {
     hover = seta;
     coordyImghover = 0;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 65 && mouseY <= 88))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 58 && mouseY <= 95))
   {
     hover = reta;
     coordyImghover = 58;
     flagHover = true;
   } 
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 108 && mouseY <= 131))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 100 && mouseY <= 141))
   {
     hover = quadrado;
     coordyImghover = 100;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 153 && mouseY <= 175))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 144 && mouseY <= 185))
   {
     hover = poligonoR;
     coordyImghover = 144;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 195 && mouseY <= 218))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 187 && mouseY <= 230))
   {
     hover = poligonoIR;
     coordyImghover = 187;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 238 && mouseY <= 264))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 232 && mouseY <= 272))
   {
     hover = pinta;
     coordyImghover = 232;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 285 && mouseY <= 309))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 278 && mouseY <= 322))
   {
     hover = circulo;
     coordyImghover = 278;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 381 && mouseY <= 405))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 373 && mouseY <= 413))
   {
     hover = rotaciona;
     coordyImghover = 373;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 424 && mouseY <= 446))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 417 && mouseY <= 455))
   {
     hover = escala;
     coordyImghover = 417;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 464 && mouseY <= 484))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 456 && mouseY <= 495))
   {
     hover = translada;
     coordyImghover = 455;
     flagHover = true;
   }
-  else if ((mouseX >= 11 && mouseX <= 34) && (mouseY >= 675 && mouseY <= 720))
+  else if ((mouseX >= 0 && mouseX <= 44) && (mouseY >= 672 && mouseY <= 720))
   {
     hover = deleta;
     coordyImghover = 671;
