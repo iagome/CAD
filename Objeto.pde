@@ -106,4 +106,63 @@ class Objeto
       }
     }
   }
+  public Vertice getCenter() {
+     if (rs != -1 && flgPoligono) return new Vertice(((objetos.get(rs).vertices.get(2).x - objetos.get(rs).vertices.get(0).x) / 2 + objetos.get(rs).vertices.get(0).x), ((objetos.get(rs).vertices.get(2).y - objetos.get(rs).vertices.get(0).y)) / 2 + objetos.get(rs).vertices.get(0).y);
+     if (rs != -1 && flgCirculo)return new Vertice(objetos.get(rs).vertices.get(0).x, objetos.get(rs).vertices.get(0).y);
+     if (rs != -1 && flagReta) return new Vertice((objetos.get(rs).vertices.get(1).x - objetos.get(rs).vertices.get(0).x) / 2 + objetos.get(rs).vertices.get(0).x, (objetos.get(rs).vertices.get(1).y - objetos.get(rs).vertices.get(0).y) / 2 + objetos.get(rs).vertices.get(0).y);
+     return objetos.get(rs).vertices.get(0);
+  }
+  
+  public void translacao() {
+    float[] translac = tranlacaoBox();
+    if (translac == null) return;
+    for (int j = 0; j < objetos.get(rs).vertices.size(); j++) 
+    {
+      objetos.get(rs).vertices.get(j).x += translac[0];
+      objetos.get(rs).vertices.get(j).y += translac[1];
+    }
+  }
+  public void rotacao() {
+    if (rs != -1 && flgCirculo) return;
+    
+    double rotBox = rotacaoBox();
+    if (rotBox==0) return;
+    
+    rotBox = rotBox*PI/180;
+    Vertice centro = getCenter();
+    for (int j = 0; j < objetos.get(rs).vertices.size(); j++) 
+    {
+      objetos.get(rs).vertices.get(j).x -= centro.x;
+      objetos.get(rs).vertices.get(j).y -= centro.y;   
+      
+      objetos.get(rs).vertices.get(j).set((objetos.get(rs).vertices.get(j).x)*cos((float)rotBox) - (objetos.get(rs).vertices.get(j).y)*sin((float)rotBox), (objetos.get(rs).vertices.get(j).x)*sin((float)rotBox) + (objetos.get(rs).vertices.get(j).y)*cos((float)rotBox));
+      
+      objetos.get(rs).vertices.get(j).x+=centro.x;
+      objetos.get(rs).vertices.get(j).y+=centro.y;
+    }
+  }
+  public void escala() {
+    float esc = escalaBox();
+    if (esc<=0) return;
+    
+    Vertice centro = getCenter();
+    if (rs != -1 && flgCirculo) {
+      //objetos.get(rs).vertices.get(0).x-=centro.x;
+      //objetos.get(rs).vertices.get(0).y-=centro.y;
+      //objetos.get(rs).vertices.get(0).x*=esc;
+      //objetos.get(rs).vertices.get(0).y*=esc;
+      //objetos.get(rs).vertices.get(0).x+=centro.x;
+      //objetos.get(rs).vertices.get(0).y+=centro.y;
+      objetos.get(rs).raio *= esc; 
+      return;
+    }
+    for (int j = 0; j < objetos.get(rs).vertices.size(); j++){
+      objetos.get(rs).vertices.get(j).x-=centro.x;
+      objetos.get(rs).vertices.get(j).y-=centro.y;
+      objetos.get(rs).vertices.get(j).x*=esc;
+      objetos.get(rs).vertices.get(j).y*=esc;
+      objetos.get(rs).vertices.get(j).x+=centro.x;
+      objetos.get(rs).vertices.get(j).y+=centro.y;
+    }
+  }
 }

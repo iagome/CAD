@@ -41,7 +41,7 @@ int buscarObjeto(double Px, double Py)
          algo3 = algoM.determinante(algoM.m);
          //disP1 = Math.sqrt(Math.pow((Px - objetos.get(i).vertices.get(0).x), 2) + Math.pow((Py - objetos.get(i).vertices.get(0).y), 2));
          //disP2 = Math.sqrt(Math.pow((Px - objetos.get(i).vertices.get(1).x), 2) + Math.pow((Py - objetos.get(i).vertices.get(1).y), 2));
-         
+         flgCirculo = false;
          if (abs((float)algo3) < 500 && abs((float)algo3) > 0)
          {
            flagReta = true;
@@ -58,6 +58,7 @@ int buscarObjeto(double Px, double Py)
       }      
       else if (j == 0)
       {
+        flgCirculo = false;
         algo = ((objetos.get(i).vertices.get(j + 1).x - objetos.get(i).vertices.get(j).x) * (objetos.get(i).vertices.get(j).y - objetos.get(i).vertices.get(objetos.get(i).vertices.size() - 1).y)) - ((objetos.get(i).vertices.get(j).x - objetos.get(i).vertices.get(objetos.get(i).vertices.size() - 1).x) * (objetos.get(i).vertices.get(j + 1).y - objetos.get(i).vertices.get(j).y));
         algo2 = ((objetos.get(i).vertices.get(j + 1).x - objetos.get(i).vertices.get(j).x) * (objetos.get(i).vertices.get(j).y - Py)) - ((objetos.get(i).vertices.get(j).x - Px) * (objetos.get(i).vertices.get(j + 1).y - objetos.get(i).vertices.get(j).y));
       }      
@@ -80,6 +81,7 @@ int buscarObjeto(double Px, double Py)
     else
     {
       flgPoligono = false;
+      flagReta = false;
       double algoR;
       algoR = Math.sqrt(Math.pow((Px - objetos.get(i).vertices.get(0).x), 2) + Math.pow((Py - objetos.get(i).vertices.get(0).y), 2));
       if(algoR <= objetos.get(i).raio)
@@ -91,6 +93,7 @@ int buscarObjeto(double Px, double Py)
     }
    }
   }
+  
   return -1;
 }
   
@@ -119,4 +122,60 @@ void bresenLine(int x0, int y0, int x1, int y1, color c)
       y0 += sy;
     }
   }
+}
+
+import javax.swing.*;
+float[] tranlacaoBox() {
+  JTextField xField = new JTextField(5);
+  JTextField yField = new JTextField(5);
+
+  JPanel myPanel = new JPanel();
+  myPanel.add(new JLabel("x:"));              // label do campo X
+  myPanel.add(xField);                        // campo X
+  myPanel.add(Box.createHorizontalStrut(15)); // espaçador
+  myPanel.add(new JLabel("y:"));              // Label do campo Y
+  myPanel.add(yField);                        // Campo Y
+
+  int result = JOptionPane.showConfirmDialog(null, myPanel, 
+    "Insira os valores de X e Y", JOptionPane.OK_CANCEL_OPTION);
+  //float[] ret = new float[2];
+  float[] ret = {.0, .0};
+  if (result == JOptionPane.OK_OPTION) {
+    ret[0] = Float.valueOf(xField.getText());
+    ret[1] = Float.valueOf(yField.getText());
+  } else return null;
+  return ret;
+}
+
+double rotacaoBox() {
+  JTextField xField = new JTextField(5);
+
+  JPanel myPanel = new JPanel();
+  myPanel.add(new JLabel("Angulo (graus):"));              // label do campo Texto
+  myPanel.add(xField);                        // campo Texto
+  myPanel.add(Box.createHorizontalStrut(15)); // espaçador
+
+  int result = JOptionPane.showConfirmDialog(null, myPanel, 
+    "Insira o valor do angulo em graus", JOptionPane.OK_CANCEL_OPTION);
+  double ret = .0;
+  if (result == JOptionPane.OK_OPTION)
+    ret = Double.valueOf(xField.getText());
+  else return 0;
+  return ret;
+}
+
+float escalaBox() {
+  JTextField xField = new JTextField(5);
+  JPanel myPanel = new JPanel();
+  myPanel.add(new JLabel("Escala:"));              // label do campo Texto
+  myPanel.add(xField);                        // campo Texto
+  myPanel.add(Box.createHorizontalStrut(15)); // espaçador
+
+  int result = JOptionPane.showConfirmDialog(null, myPanel, 
+    "Insira o valor da escala", JOptionPane.OK_CANCEL_OPTION);
+  float ret = .0;
+  if (result == JOptionPane.OK_OPTION)
+    ret = Float.valueOf(xField.getText());
+  else return -1;
+  return ret;
 }
